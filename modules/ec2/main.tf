@@ -23,9 +23,11 @@ resource "aws_security_group" "default-group" {
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+    protocol    = "-1"
+    description = "allow all outbound traffic"
   }
 }
 
@@ -40,6 +42,7 @@ resource "aws_instance" "tier1" {
   key_name               = "${aws_key_pair.tier1-key-pair.key_name}"
   subnet_id              = "${var.subnet-id}"
   vpc_security_group_ids = ["${aws_security_group.default-group.id}"]
+  user_data              = "${var.user-data}"
 
   tags = {
     Name = "${var.project}-instance"

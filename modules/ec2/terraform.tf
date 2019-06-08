@@ -18,3 +18,8 @@ variable "key-pair" {
   type        = "string"
   description = "Allowed public key pair on the instance"
 }
+
+variable "user-data" {
+  type        = "string"
+  description = "User data to be executed upon creation of the instance"
+}

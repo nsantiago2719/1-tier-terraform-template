@@ -13,4 +13,5 @@ module "ec2" {
   subnet-id = "${module.vpc.public-subnet-id}"
   key-pair  = "${file("${path.cwd}/keypair")}"
   vpc-id    = "${module.vpc.vpc-id}"
+  user-data = "${file("${path.cwd}/modules/install_nginx/install")}"
 }
