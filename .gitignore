@@ -1,0 +1,5 @@
+
+.terraform
+keypair
+terraform.tfstate
+terraform.tfstate.backup
