@@ -23,3 +23,9 @@ variable "user-data" {
   type        = "string"
   description = "User data to be executed upon creation of the instance"
 }
+
+variable "ingress-ports" {
+  type = "list"
+  description = "list of open ports for default security group"
+  default = ["22", "80", "443"]
+}

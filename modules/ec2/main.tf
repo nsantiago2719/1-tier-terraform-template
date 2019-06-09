@@ -8,18 +8,15 @@ resource "aws_security_group" "default-group" {
   description = "allow all"
   vpc_id      = "${var.vpc-id}"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  dynamic "ingress" {
+    for_each = var.ingress-ports
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   egress {
